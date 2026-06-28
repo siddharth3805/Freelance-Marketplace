@@ -1,30 +1,35 @@
-function App() {
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import MainLayout from './layouts/MainLayout'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import ProjectsPage from './pages/ProjectsPage'
+import ProjectDetailPage from './pages/ProjectDetailPage'
+import PostProjectPage from './pages/PostProjectPage'
+import DashboardPage from './pages/DashboardPage'
+import ProfilePage from './pages/ProfilePage'
+import MessagesPage from './pages/MessagesPage'
+import AdminPage from './pages/AdminPage'
+import NotFoundPage from './pages/NotFoundPage'
+
+export default function App() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Freelance Marketplace
-        </h1>
-        <p className="text-lg text-gray-600 mb-8">
-          Connecting clients and freelancers — built with React + TypeScript + Tailwind
-        </p>
-        <div className="flex gap-4 justify-center">
-          <span className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium">
-            React 18
-          </span>
-          <span className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium">
-            TypeScript
-          </span>
-          <span className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium">
-            TailwindCSS
-          </span>
-          <span className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium">
-            Vite
-          </span>
-        </div>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:id" element={<ProjectDetailPage />} />
+          <Route path="/post-project" element={<PostProjectPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route path="/messages" element={<MessagesPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
-
-export default App
