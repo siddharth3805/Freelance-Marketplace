@@ -16,6 +16,13 @@ export const userRepository = {
     })
   },
 
+  findByRefreshToken: async (token: string) => {
+    return prisma.user.findFirst({
+      where: { refreshToken: token },
+      include: { profile: true },
+    })
+  },
+
   create: async (data: {
     email: string
     password: string
@@ -36,6 +43,13 @@ export const userRepository = {
         },
       },
       include: { profile: true },
+    })
+  },
+
+  updateRefreshToken: async (userId: string, token: string | null) => {
+    return prisma.user.update({
+      where: { id: userId },
+      data: { refreshToken: token },
     })
   },
 }
